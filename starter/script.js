@@ -129,7 +129,7 @@ greet2('Xin chao')('Nhan');
 /**
  * 132. The call and apply Methods
  */
-
+/*
 const lufthansa = {
   airline: 'Lufthansa',
   iataCode: 'LH',
@@ -177,7 +177,7 @@ book.apply(swiss, flightData);
 console.log(swiss);
 
 book.call(swiss, ...flightData);
-
+*/
 
 /**
  * 133. The bind method
@@ -185,7 +185,7 @@ book.call(swiss, ...flightData);
 
 //Bind method
 //book.call(eurowings, 23, 'Nhan')
-
+/*
 const bookEW = book.bind(eurowings);
 const bookLH = book.bind(lufthansa);
 const bookSW = book.bind(swiss);
@@ -222,3 +222,86 @@ const addVAT = function(rate) {
 const addVAT2 = addVAT(0.23);
 
 console.log(addVAT2(200));
+*/
+
+/**
+ * 135. Immediately Invoked Function Expressions (IIFE)
+ */
+/*
+const runOnce = function() {
+  console.log('This will never run again');
+}
+runOnce();
+
+(function() {
+  console.log('This will never run again');
+})();
+
+(() => console.log('This will ALSO never run again'))();
+*/
+
+
+/**
+ * 136. Closures
+ */
+/*
+const secureBooking = function() {
+  let passengerCount = 0;
+
+  return function() {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  }
+}
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+*/
+
+
+/**
+ * 137. More closure examples
+ */
+let f;
+
+const g = function() {
+  const a = 23;
+  f = function() {
+    console.log(a * 2);
+  };
+};
+
+const h = function() {
+  const b = 777;
+  f = function() {
+    console.log(b * 2);
+  }
+}
+
+g();
+f();
+console.dir(f);
+// Re-assigning f function
+h();
+f();
+console.dir(f);
+
+//Example 2
+const boardPassengers = function(n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function() {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} second`);
+} 
+
+const perGroup = 1000;
+boardPassengers(180, 3);
